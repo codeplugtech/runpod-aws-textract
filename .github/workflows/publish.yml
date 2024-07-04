@@ -3,10 +3,10 @@ name: publish
 on: [push]
 
 jobs:
- build-and-push-image:
-  runs-on: ubuntu-latest
+  build-and-push-image:
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -17,7 +17,10 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build the BankStmtConveter Python Docker image
-      run: |
-        docker build --platform linux/amd64 --tag ghcr.io/codeplugtech/runpod-aws-textract:latest
-        docker push ghcr.io/codeplugtech/runpod-aws-textract:latest
+    - name: Build and push Docker image for AWS Textract
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        platforms: linux/amd64
+        tags: ghcr.io/codeplugtech/runpod-aws-textract:latest
