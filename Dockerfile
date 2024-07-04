@@ -11,9 +11,9 @@ LABEL org.opencontainers.image.licenses=MIT
 
 
 # --- Optional: System dependencies ---
-# COPY builder/setup.sh /setup.sh
-# RUN /bin/bash /setup.sh && \
-#     rm /setup.sh
+COPY builder/setup.sh /setup.sh
+RUN /bin/bash /setup.sh && \
+     rm /setup.sh
 
 
 # Python dependencies

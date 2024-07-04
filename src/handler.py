@@ -21,7 +21,7 @@ S3_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME")
 
 def handler(job):
     """ Handler function that will be used to process jobs. """
-    job_input = job.get('input', {})
+    job_input = job['input']
 
     if not job_input.get("user_id", None):
         return {
@@ -41,7 +41,6 @@ def handler(job):
     document_id = job_input.get('document_id')
     job_id = job_input.get('job_id')
     user_id = job_input.get('user_id')
-
     textractor_client = Textractor(region_name='ap-south-1')
     temp_dir = Path(tempfile.mkdtemp())
     excel_file_path = Path(temp_dir) / f'{document_id}.xlsx'

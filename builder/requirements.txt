@@ -10,3 +10,5 @@ boto3>=1.34.94
 pandas>=2.2.2
 python-dotenv>=1.0.1
 amazon-textract-textractor~=1.8.2
+pypdfium2>=4.30.0
+pdf2image
