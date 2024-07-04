@@ -5,6 +5,9 @@ on: [push]
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
     - name: Checkout repository
@@ -15,7 +18,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.PAT_GHCR }}
 
     - name: Build and push Docker image for AWS Textract
       uses: docker/build-push-action@v2
